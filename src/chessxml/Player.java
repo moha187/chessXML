@@ -1,6 +1,5 @@
 package chessxml;
 
-
 import chessxml.Board;
 import chessxml.Color;
 
@@ -35,6 +34,14 @@ public class Player {
 
     public Board getBoard() {
         return board;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
 }

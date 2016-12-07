@@ -38,5 +38,9 @@ public class Figure {
     public Position getPos() {
         return pos;
     }
+    
+    public void setPosition(Position pos){
+        this.pos = pos;
+    }
 
 }
