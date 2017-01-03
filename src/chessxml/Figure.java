@@ -31,6 +31,16 @@ public class Figure {
         return dead;
     }
 
+    public void bringToLife(Position newPos) {
+        this.dead = false;
+        setPosition(newPos);
+    }
+
+    public void setDead() {
+        this.dead = true;
+        this.pos.setDead();
+    }
+
     public Color getColor() {
         return color;
     }
@@ -38,8 +48,8 @@ public class Figure {
     public Position getPos() {
         return pos;
     }
-    
-    public void setPosition(Position pos){
+
+    public void setPosition(Position pos) {
         this.pos = pos;
     }
 

@@ -18,10 +18,10 @@ public class Player {
     private String name;
     private Board board;
 
-    public Player(Color color, String name, Board board) {
+    public Player(Color color, String name) {
         this.color = color;
         this.name = name;
-        this.board = board;
+
     }
 
     public Color getColor() {
@@ -32,10 +32,9 @@ public class Player {
         return name;
     }
 
-    public Board getBoard() {
-        return board;
-    }
-
+    /**
+     * public Board getBoard() { return board; }
+     */
     public void setName(String name) {
         this.name = name;
     }

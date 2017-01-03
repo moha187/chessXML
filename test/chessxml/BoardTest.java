@@ -19,9 +19,13 @@ import static org.junit.Assert.*;
 public class BoardTest {
 
     Board board;
+    Player player1;
+    Player player2;
 
     public BoardTest() {
         board = new Board();
+        player1 = new Player(Color.WHITE, "player one");
+        player2 = new Player(Color.BLACK, "player two");
     }
 
     @Before
@@ -31,6 +35,8 @@ public class BoardTest {
     @After
     public void tearDown() {
         board = null;
+        player1 = null;
+        player2 = null;
     }
 
     @Test
@@ -107,6 +113,37 @@ public class BoardTest {
         assertEquals(8, pawnBlack);
         assertEquals(8, pawnWhite);
         assertEquals(32, figures.length);
+    }
+
+    @Test
+    public void testNotValidMove() {
+        board.moveFigure(player1, board.getFigure(new Position(3, 1)), new Position(5, 3));
+        assertEquals(null, board.getFigure(new Position(5, 3)));
+        assertEquals(FigureType.BISHOP, board.getFigure(new Position(3, 1)).getType());
+    }
+
+    @Test
+    public void testMoveFigure() {
+        assertEquals(Color.WHITE, board.getTurn());
+        board.moveFigure(player1, board.getFigure(new Position(4, 2)), new Position(4, 3));
+        assertEquals(Color.BLACK, board.getTurn());
+        assertEquals(null, board.getFigure(new Position(4, 2)));
+        assertEquals(FigureType.PAWN, board.getFigure(new Position(4, 3)).getType());
+        assertEquals(Color.WHITE, board.getFigure(new Position(4, 3)).getColor());
+        board.moveFigure(player2, board.getFigure(new Position(1, 7)), new Position(1, 6));
+        assertEquals(null, board.getFigure(new Position(1, 7)));
+        assertEquals(FigureType.PAWN, board.getFigure(new Position(1, 6)).getType());
+        assertEquals(Color.WHITE, board.getTurn());
+    }
+
+    @Test
+    public void testMoveAndKillFigure() {
+        board.getFigure(new Position(2, 7)).setPosition(new Position(2, 3));
+        assertEquals(FigureType.PAWN, board.getFigure(new Position(2, 3)).getType());
+        assertEquals(Color.BLACK, board.getFigure(new Position(2, 3)).getColor());
+        board.moveFigure(player1, board.getFigure(new Position(1, 2)), new Position(2, 3));
+        assertEquals(Color.WHITE, board.getFigure(new Position(2, 3)).getColor());
+        assertEquals(FigureType.PAWN, board.getFigure(new Position(2, 3)).getType());       
     }
 
     @Test

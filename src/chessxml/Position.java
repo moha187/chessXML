@@ -19,6 +19,11 @@ public class Position {
         this.vertical = vertical;
     }
 
+    public void setDead() {
+        this.horizontal = 0;
+        this.vertical = 0;
+    }
+
     public void setPosition(int horizontal, int vertical) {
         if (!(horizontal > 8 || vertical > 8
                 || horizontal < 1 || vertical < 1)) {

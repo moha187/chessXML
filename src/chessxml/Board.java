@@ -11,10 +11,20 @@ package chessxml;
  */
 public final class Board {
 
-    Figure[] figures;
+    private Figure[] figures;
+    private Validation validation;
+    private Color turn;
 
     public Board() {
         this.figures = initFigures();
+        this.validation = new Validation();
+        this.turn = Color.WHITE;
+    }
+
+    public Board(Figure[] figures) {
+        this.figures = figures;
+        this.validation = new Validation();
+        this.turn = Color.WHITE;
     }
 
     public Figure[] initFigures() {
@@ -43,31 +53,78 @@ public final class Board {
         figures[21] = new Figure(FigureType.KNIGHT, false, Color.BLACK, new Position(7, 8));
         figures[22] = new Figure(FigureType.ROOK, false, Color.BLACK, new Position(1, 8));
         figures[23] = new Figure(FigureType.ROOK, false, Color.BLACK, new Position(8, 8));
-        figures[24] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(1, 8));
-        figures[25] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(2, 8));
-        figures[26] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(3, 8));
-        figures[27] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(4, 8));
-        figures[28] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(5, 8));
-        figures[29] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(6, 8));
-        figures[30] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(7, 8));
-        figures[31] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(8, 8));
-
+        figures[24] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(1, 7));
+        figures[25] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(2, 7));
+        figures[26] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(3, 7));
+        figures[27] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(4, 7));
+        figures[28] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(5, 7));
+        figures[29] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(6, 7));
+        figures[30] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(7, 7));
+        figures[31] = new Figure(FigureType.PAWN, false, Color.BLACK, new Position(8, 7));
         return figures;
     }
 
     public Figure getFigure(Position pos) {
         for (Figure figure : figures) {
-            if (pos.equals(figure.getPos())) {
+            if (pos.equals(figure.getPos())
+                    && !(figure.isDead())) {
                 return figure;
             }
         }
         return null;
     }
 
-    public void moveFigure(Player player, Figure figure, Position target) {
-        if (player.getColor().equals(figure.getColor())) {
-            
-        }
-
+    public Position[] getPossibleTargets(Figure fig) {
+        return validation.getPossiblePositions(fig, this);
     }
+
+    private void setDead(Position pos) {
+        this.getFigure(pos).setDead();
+    }
+
+    public void moveFigure(Player player, Figure figure, Position target) {
+        if (player.getColor().equals(getTurn()) && player.getColor().equals(figure.getColor())
+                && validation.validTarget(figure, this, target)) {
+            if (this.getFigure(target) != null
+                    && player.getColor() != this.getFigure(target).getColor()) {
+                this.setDead(target);
+                this.getFigure(figure.getPos()).setPosition(target);
+                this.switchTurn();
+            } else {
+                this.getFigure(figure.getPos()).setPosition(target);
+                this.switchTurn();
+            }
+
+        }
+    }
+
+    public Figure[] getAllFigures() {
+        return this.figures;
+    }
+
+    private void switchTurn() {
+        if (turn.equals(Color.BLACK)) {
+            turn = Color.WHITE;
+        } else {
+            turn = Color.BLACK;
+        }
+    }
+
+    public Color getTurn() {
+        return turn;
+    }
+
+    public boolean kingsAreAlive() {
+        int kingCounter = 0;
+        for (Figure figure : figures) {
+            if (figure.getType() == FigureType.KING) {
+                kingCounter++;
+            }
+            if (kingCounter == 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
