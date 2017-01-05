@@ -21,11 +21,10 @@ public class Game {
         playerBlack = new Player(Color.BLACK, nameBlackPlayer);
         board = new Board();
         System.out.println("Start Game!!!!");
-
     }
 
     public Figure[] getAllPositions() {
-        
+
         return board.getAllFigures();
     }
 
@@ -61,4 +60,28 @@ public class Game {
         return board.kingsAreAlive();
     }
 
+    public Player[] getPlayers() {
+        Player[] players = new Player[2];
+        players[0] = this.playerWhite;
+        players[1] = this.playerBlack;
+        return players;
+    }
+
+    public Board getBoard() {
+        return this.board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public void setPlayers(Player[] players) {
+        for (Player player : players) {
+            if (player.getColor() == Color.WHITE) {
+                this.playerWhite = player;
+            } else if (player.getColor() == Color.BLACK) {
+                this.playerBlack = player;
+            }
+        }
+    }
 }

@@ -16,14 +16,18 @@ public class Player {
 
     private Color color;
     private String name;
-    private Board board;
+    //private Board board;
 
     public Player(Color color, String name) {
         this.color = color;
         this.name = name;
 
     }
-
+    
+    public Player(){
+        
+    }
+    
     public Color getColor() {
         return color;
     }
@@ -43,4 +47,26 @@ public class Player {
         this.color = color;
     }
 
+    public String getColorAsString() {
+        switch (this.color) {
+            case BLACK:
+                return "BLACK";
+            case WHITE:
+                return "WHITE";
+            default:
+                return "No Color Assigned";
+        }
+
+    }
+    
+    public void setColorWithString(String color){
+        switch(color){
+            case "WHITE":
+                this.color = Color.WHITE;
+                break;
+            case "BLACK":
+                this.color = Color.BLACK;
+                break;
+        }
+    }
 }

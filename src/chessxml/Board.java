@@ -21,10 +21,10 @@ public final class Board {
         this.turn = Color.WHITE;
     }
 
-    public Board(Figure[] figures) {
+    public Board(Figure[] figures, Color color) {
         this.figures = figures;
         this.validation = new Validation();
-        this.turn = Color.WHITE;
+        this.turn = color;
     }
 
     public Figure[] initFigures() {
@@ -72,6 +72,18 @@ public final class Board {
             }
         }
         return null;
+    }
+
+    public Figure[] getFiguresOfColor(Color color) {
+        Figure[] figuresOfColor = new Figure[16];
+        int i = 0;
+        for (Figure figure : this.getAllFigures()) {
+            if (figure.getColor() == color && !figure.isDead()) {
+                figuresOfColor[i] = figure;
+                i++;
+            }
+        }
+        return figuresOfColor;
     }
 
     public Position[] getPossibleTargets(Figure fig) {

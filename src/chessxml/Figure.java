@@ -23,6 +23,34 @@ public class Figure {
         this.pos = startPos;
     }
 
+    public Figure(String figureType, Color color, Position position) {
+
+        switch (figureType) {
+            case "pawn":
+                this.type = FigureType.PAWN;
+                break;
+            case "bishop":
+                this.type = FigureType.BISHOP;
+                break;
+            case "knight":
+                this.type = FigureType.KNIGHT;
+                break;
+            case "rook":
+                this.type = FigureType.ROOK;
+                break;
+            case "queen":
+                this.type = FigureType.QUEEN;
+                break;
+            case "king":
+                this.type = FigureType.KING;
+                break;
+        }
+
+        this.color = color;
+        this.pos = position;
+        this.dead = false;
+    }
+
     public FigureType getType() {
         return type;
     }

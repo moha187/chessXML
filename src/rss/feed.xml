@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+	<title>ChessXML Moves</title>
+	<link>localhost/ChessXML/rss/feed.xml</link>
+	<description>Moves made by players while playing a game of Chess</description>
+	<language>en</language>
+	<copyright>Copyright hold by Moha Messri, Marvin Rüsenberg, Roland Kompalka</copyright>
+	<pubdate>Thu, 05 Jan 2017 16:12:54 +0100</pubdate>
+<item>
+	<title>WHITE made a move.</title>
+	<description>WHITE moved his PAWN from 2|1 to 3|1</description>
+	<link>localhost/ChessXML/rss/feed.xml</link>
+	<author>ChessXML</author>
+	<guid>1</guid>
+
+</item>
+<item>
+	<title>BLACK made a move.</title>
+	<description>BLACK moved his PAWN from 7|2 to 8|2</description>
+	<link>localhost/ChessXML/rss/feed.xml</link>
+	<author>ChessXML</author>
+	<guid>2</guid>
+
+</item>
+
+</channel>
+</rss>
