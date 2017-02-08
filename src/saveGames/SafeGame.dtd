@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/SafeGame.dtd
+
+-->
+
+<!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE game SYSTEM "SafeGame.dtd">
+
+    <game>
+    ...
+    </game>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT game (player)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT player (figures|turn|color|name)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT name (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT color (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT turn (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT figures (pawn|rook|knight|bishop|queen|king)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT king (yposition|xposition)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT xposition (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT yposition (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT queen (yposition|xposition)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT bishop (yposition|xposition)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT knight (yposition|xposition)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT rook (yposition|xposition)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT pawn (yposition|xposition)*>

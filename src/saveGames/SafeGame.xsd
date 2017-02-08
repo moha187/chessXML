@@ -1,0 +1,71 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="game">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="player" maxOccurs="2" minOccurs="2">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="color"/>
+              <xs:element type="xs:string" name="turn"/>
+              <xs:element name="figures">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="king">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:byte" name="xposition"/>
+                          <xs:element type="xs:byte" name="yposition"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="queen">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:byte" name="xposition"/>
+                          <xs:element type="xs:byte" name="yposition"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="bishop" maxOccurs="2" minOccurs="2">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:byte" name="xposition"/>
+                          <xs:element type="xs:byte" name="yposition"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="knight" maxOccurs="2" minOccurs="2">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:byte" name="xposition"/>
+                          <xs:element type="xs:byte" name="yposition"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="rook" maxOccurs="2" minOccurs="2">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:byte" name="xposition"/>
+                          <xs:element type="xs:byte" name="yposition"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="pawn" maxOccurs="8" minOccurs="8">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:byte" name="xposition"/>
+                          <xs:element type="xs:byte" name="yposition"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
